@@ -1,10 +1,15 @@
 FROM golang:1.13 as builder
+
 WORKDIR /app
-COPY . ./
+
+COPY . .
+
 RUN CGO_ENABLED=0 GOOS=linux go build -o server .
 
+FROM alpine:3.10
 
-FROM alpine:3
-RUN apk add --no-cache ca-certificates
-COPY --from=builder /app/* /
-CMD ["/server"]
+WORKDIR /app
+
+COPY --from=builder /app/server .
+
+CMD ["./server"]
