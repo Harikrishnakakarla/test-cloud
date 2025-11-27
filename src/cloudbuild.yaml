@@ -7,7 +7,7 @@ steps:
   args:
   - 'run'
   - 'deploy'
-  - 'my-service'
+  - 'myapp1'
   - '--image'
   - 'gcr.io/$PROJECT_ID/myapp1:$COMMIT_SHA'
   - '--region'
@@ -16,3 +16,4 @@ steps:
   - '--allow-unathenticated'
 images:
 - 'gcr.io/$PROJECT_ID/myapp1:$COMMIT_SHA'
+logs_bucket: gs://test-hkarkalla-bucket
